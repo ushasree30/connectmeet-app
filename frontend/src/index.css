@@ -43,3 +43,145 @@ a {
   color: inherit;
   text-decoration: none;
 }
+/* =========================================================
+   CONNECTMEET - ATTRACTIVE UI ENHANCEMENTS
+========================================================= */
+
+/* Smooth page appearance */
+body {
+  background: linear-gradient(135deg, #f4f8ff, #eef4ff);
+}
+
+/* Smooth transitions for cards */
+.panel,
+.stat-card,
+.action-card,
+.meeting,
+.welcome {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Attractive cards */
+.panel,
+.stat-card {
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(30, 74, 130, 0.07);
+}
+
+/* Card hover effect */
+.panel:hover,
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(30, 74, 130, 0.12);
+}
+
+/* More spacing between quick-action buttons */
+.action-card {
+  margin-bottom: 16px;
+  padding: 17px;
+  border-radius: 15px;
+  gap: 16px;
+}
+
+/* Attractive quick-action icons */
+.action-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 20px;
+  box-shadow: 0 5px 12px rgba(30, 74, 130, 0.08);
+}
+
+/* Better buttons */
+.primary-button,
+.secondary-button,
+.join-button,
+.create-meeting-button {
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.join-button:hover,
+.create-meeting-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(18, 97, 214, 0.2);
+}
+
+/* More space between welcome buttons */
+.welcome-actions {
+  gap: 16px;
+}
+
+/* Modern meeting rows */
+.meeting {
+  padding: 18px 8px;
+  border-radius: 14px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.meeting:hover {
+  background: #f7faff;
+  transform: translateX(4px);
+}
+
+/* Modern meeting date box */
+.meeting-date {
+  width: 58px;
+  height: 62px;
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(18, 97, 214, 0.08);
+}
+
+/* Attractive sidebar navigation */
+.nav-item {
+  margin-bottom: 5px;
+  border-radius: 13px;
+  padding: 14px 15px;
+  transition: all 0.25s ease;
+}
+
+.nav-item:hover {
+  transform: translateX(4px);
+}
+
+/* Modern profile avatar */
+.avatar {
+  box-shadow: 0 5px 15px rgba(18, 97, 214, 0.2);
+}
+
+/* Modern modal */
+.modal {
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(15, 35, 70, 0.3);
+}
+
+/* Better form fields */
+.meeting-form input,
+.meeting-form select {
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.meeting-form input:hover,
+.meeting-form select:hover {
+  border-color: #8bb5f0;
+}
+
+/* Better mobile spacing */
+@media (max-width: 600px) {
+  .action-card {
+    margin-bottom: 12px;
+    padding: 14px;
+  }
+
+  .welcome-actions {
+    gap: 10px;
+  }
+
+  .panel,
+  .stat-card {
+    border-radius: 16px;
+  }
+}

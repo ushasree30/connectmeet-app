@@ -267,7 +267,7 @@ function App() {
       params.append("createdBy", username);
 
       const url =
-        `http://localhost:8081/api/meetings?${params.toString()}`;
+        `https://connectmeet-app.onrender.com/api/meetings?${params.toString()}`;
 
       console.log("Creating meeting:", url);
 
@@ -324,7 +324,7 @@ function App() {
 
     try {
       const url =
-        `http://localhost:8081/api/meetings/${encodeURIComponent(code)}`;
+        `https://connectmeet-app.onrender.com/api/meetings/${encodeURIComponent(code)}`;
 
       console.log("Request URL:", url);
 
