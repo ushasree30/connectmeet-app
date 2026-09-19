@@ -2,13 +2,22 @@ package connectmeet.controller;
 
 import connectmeet.dto.LoginRequest;
 import connectmeet.dto.LoginResponse;
+import connectmeet.dto.RegisterRequest;
 import connectmeet.entity.User;
 import connectmeet.service.UserService;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://connectmeet-app.vercel.app"
+})
 public class AuthController {
 
     private final UserService userService;
@@ -17,39 +26,60 @@ public class AuthController {
         this.userService = userService;
     }
 
-    // Register
+    // Register a new user
     @PostMapping("/register")
-    public ResponseEntity<User> register(
-            @RequestParam String username,
-            @RequestParam String email,
-            @RequestParam String password) {
+    public ResponseEntity<?> register(
+            @RequestBody RegisterRequest request) {
 
-        User user = userService.registerUser(
-                username,
-                email,
-                password
-        );
+        try {
+            User user = userService.registerUser(
+                    request.getUsername(),
+                    request.getEmail(),
+                    request.getPassword()
+            );
 
-        return ResponseEntity.ok(user);
+            LoginResponse response = new LoginResponse(
+                    "Registration successful",
+                    user.getId(),
+                    user.getUsername(),
+                    user.getEmail()
+            );
+
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(response);
+
+        } catch (RuntimeException exception) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(Map.of("message", exception.getMessage()));
+        }
     }
 
-    // Login
+    // Login an existing user
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(
+    public ResponseEntity<?> login(
             @RequestBody LoginRequest request) {
 
-        User user = userService.loginUser(
-                request.getUsername(),
-                request.getPassword()
-        );
+        try {
+            User user = userService.loginUser(
+                    request.getUsername(),
+                    request.getPassword()
+            );
 
-        LoginResponse response = new LoginResponse(
-                "Login successful",
-                user.getId(),
-                user.getUsername(),
-                user.getEmail()
-        );
+            LoginResponse response = new LoginResponse(
+                    "Login successful",
+                    user.getId(),
+                    user.getUsername(),
+                    user.getEmail()
+            );
 
-        return ResponseEntity.ok(response);
+            return ResponseEntity.ok(response);
+
+        } catch (RuntimeException exception) {
+            return ResponseEntity
+                    .status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("message", exception.getMessage()));
+        }
     }
 }
